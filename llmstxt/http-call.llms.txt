@@ -1,0 +1,8 @@
+# Higress Plugin: http-call
+
+> LLM-friendly entrypoint for the `http-call` plugin in Higress.
+
+## Docs
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/http-call/main.go): Plugin runtime behavior and request/response processing logic.

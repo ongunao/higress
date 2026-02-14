@@ -1,0 +1,10 @@
+# Higress Plugin: ai-search
+
+> LLM-friendly entrypoint for the `ai-search` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-search/README.md): Main plugin documentation in Chinese.
+- [README (English)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-search/README_EN.md): Main plugin documentation in English.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-search/main.go): Plugin runtime behavior and request/response processing logic.

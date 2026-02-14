@@ -1,0 +1,10 @@
+# Higress Plugin: ai-rag
+
+> LLM-friendly entrypoint for the `ai-rag` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-rag/README.md): Main plugin documentation in Chinese.
+- [README (English)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-rag/README_EN.md): Main plugin documentation in English.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-rag/main.go): Plugin runtime behavior and request/response processing logic.

@@ -1,0 +1,10 @@
+# Higress Plugin: ai-image-reader
+
+> LLM-friendly entrypoint for the `ai-image-reader` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-image-reader/README.md): Main plugin documentation in Chinese.
+- [README (English)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-image-reader/README_EN.md): Main plugin documentation in English.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-image-reader/main.go): Plugin runtime behavior and request/response processing logic.

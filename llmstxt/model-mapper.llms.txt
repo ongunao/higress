@@ -1,0 +1,10 @@
+# Higress Plugin: model-mapper
+
+> LLM-friendly entrypoint for the `model-mapper` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/model-mapper/README.md): Main plugin documentation in Chinese.
+- [README (English)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/model-mapper/README_EN.md): Main plugin documentation in English.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/model-mapper/main.go): Plugin runtime behavior and request/response processing logic.

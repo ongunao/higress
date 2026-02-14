@@ -1,0 +1,10 @@
+# Higress Plugin: traffic-editor
+
+> LLM-friendly entrypoint for the `traffic-editor` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/traffic-editor/README.md): Main plugin documentation in Chinese.
+- [README (English)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/traffic-editor/README_EN.md): Main plugin documentation in English.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/traffic-editor/main.go): Plugin runtime behavior and request/response processing logic.

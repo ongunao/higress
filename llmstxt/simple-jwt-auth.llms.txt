@@ -1,0 +1,9 @@
+# Higress Plugin: simple-jwt-auth
+
+> LLM-friendly entrypoint for the `simple-jwt-auth` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/simple-jwt-auth/README.md): Main plugin documentation in Chinese.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/simple-jwt-auth/main.go): Plugin runtime behavior and request/response processing logic.

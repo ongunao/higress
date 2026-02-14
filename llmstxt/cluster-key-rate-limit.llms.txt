@@ -1,0 +1,11 @@
+# Higress Plugin: cluster-key-rate-limit
+
+> LLM-friendly entrypoint for the `cluster-key-rate-limit` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/cluster-key-rate-limit/README.md): Main plugin documentation in Chinese.
+- [README (English)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/cluster-key-rate-limit/README_EN.md): Main plugin documentation in English.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/cluster-key-rate-limit/main.go): Plugin runtime behavior and request/response processing logic.
+- [config/](https://github.com/ongunao/higress/blob/main/plugins/wasm-go/extensions/cluster-key-rate-limit/config): Configuration parsing and validation logic.

@@ -1,0 +1,10 @@
+# Higress Plugin: ai-prompt-template
+
+> LLM-friendly entrypoint for the `ai-prompt-template` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-prompt-template/README.md): Main plugin documentation in Chinese.
+- [README (English)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-prompt-template/README_EN.md): Main plugin documentation in English.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-prompt-template/main.go): Plugin runtime behavior and request/response processing logic.

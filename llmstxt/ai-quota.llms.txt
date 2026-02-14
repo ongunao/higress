@@ -1,0 +1,11 @@
+# Higress Plugin: ai-quota
+
+> LLM-friendly entrypoint for the `ai-quota` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-quota/README.md): Main plugin documentation in Chinese.
+- [README (English)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-quota/README_EN.md): Main plugin documentation in English.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-quota/main.go): Plugin runtime behavior and request/response processing logic.
+- [plugin.yaml](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-quota/plugin.yaml): Plugin metadata and schema information.

@@ -1,0 +1,9 @@
+# Higress Plugin: api-workflow
+
+> LLM-friendly entrypoint for the `api-workflow` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/api-workflow/README.md): Main plugin documentation in Chinese.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/api-workflow/main.go): Plugin runtime behavior and request/response processing logic.

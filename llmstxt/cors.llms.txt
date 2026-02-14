@@ -1,0 +1,11 @@
+# Higress Plugin: cors
+
+> LLM-friendly entrypoint for the `cors` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/cors/README.md): Main plugin documentation in Chinese.
+- [README (English)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/cors/README_EN.md): Main plugin documentation in English.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/cors/main.go): Plugin runtime behavior and request/response processing logic.
+- [config/](https://github.com/ongunao/higress/blob/main/plugins/wasm-go/extensions/cors/config): Configuration parsing and validation logic.

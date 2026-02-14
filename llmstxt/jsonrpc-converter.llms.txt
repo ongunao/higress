@@ -1,0 +1,8 @@
+# Higress Plugin: jsonrpc-converter
+
+> LLM-friendly entrypoint for the `jsonrpc-converter` plugin in Higress.
+
+## Docs
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/jsonrpc-converter/main.go): Plugin runtime behavior and request/response processing logic.

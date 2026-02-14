@@ -1,0 +1,8 @@
+# Higress Plugin: streaming-body-example
+
+> LLM-friendly entrypoint for the `streaming-body-example` plugin in Higress.
+
+## Docs
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/streaming-body-example/main.go): Plugin runtime behavior and request/response processing logic.

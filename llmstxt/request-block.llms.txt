@@ -1,0 +1,9 @@
+# Higress Plugin: request-block
+
+> LLM-friendly entrypoint for the `request-block` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/request-block/README.md): Main plugin documentation in Chinese.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/request-block/main.go): Plugin runtime behavior and request/response processing logic.

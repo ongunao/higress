@@ -1,0 +1,11 @@
+# Higress Plugin: ai-cache
+
+> LLM-friendly entrypoint for the `ai-cache` plugin in Higress.
+
+## Docs
+- [README (中文)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-cache/README.md): Main plugin documentation in Chinese.
+- [README (English)](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-cache/README_EN.md): Main plugin documentation in English.
+
+## Source
+- [main.go](https://raw.githubusercontent.com/ongunao/higress/main/plugins/wasm-go/extensions/ai-cache/main.go): Plugin runtime behavior and request/response processing logic.
+- [config/](https://github.com/ongunao/higress/blob/main/plugins/wasm-go/extensions/ai-cache/config): Configuration parsing and validation logic.

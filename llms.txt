@@ -1,0 +1,12 @@
+# Higress
+
+> Root llms.txt entrypoint for Higress LLM-friendly documentation indexes.
+
+## Docs
+
+- [Higress Plugin Index](./llmstxt/llms.txt): Aggregated index for all built-in Wasm plugin llms files.
+- [Repository README](./README.md): Project overview and quick start.
+
+## Optional
+
+- [Higress Plugin Hub](https://higress.cn/plugin/): Official plugin catalog.
