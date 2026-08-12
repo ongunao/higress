@@ -19,6 +19,7 @@ set -euo pipefail
 
 TYPE=${PLUGIN_TYPE-""}
 INNER_PLUGIN_NAME=${PLUGIN_NAME-""}
+INNER_PLUGIN_ROOT=${PLUGIN_ROOT-""}
 
 if [ "$TYPE" == "CPP" ]
 then
@@ -49,8 +50,8 @@ then
             done
     else
         echo "🚀 Build Rust WasmPlugin: $INNER_PLUGIN_NAME"
-        PLUGIN_NAME=${INNER_PLUGIN_NAME} make lint 
-        PLUGIN_NAME=${INNER_PLUGIN_NAME} make build
+        PLUGIN_ROOT=${INNER_PLUGIN_ROOT:-extensions} PLUGIN_NAME=${INNER_PLUGIN_NAME} make lint
+        PLUGIN_ROOT=${INNER_PLUGIN_ROOT:-extensions} PLUGIN_NAME=${INNER_PLUGIN_NAME} make build
     fi
 else
     echo "Not specify plugin language, so just compile wasm-go as default"
@@ -66,6 +67,12 @@ else
                 fi
                 if [ -d $EXTENSIONS_DIR$file ]; then
                     name=${file##*/}
+                    # mcp-server is an e2e conformance dependency and has no
+                    # release VERSION. It is built explicitly below instead
+                    # of relying on the alpha-release discovery convention.
+                    if [ "$name" == "mcp-server" ]; then
+                        continue
+                    fi
                     version_file="$EXTENSIONS_DIR$file/VERSION"
                     if [ -f "$version_file" ]; then
                         version=$(cat "$version_file")
@@ -92,8 +99,10 @@ else
                     fi
                 fi
             done
+        echo "🚀 Build required Go WasmPlugin: mcp-server (2026-07-28 conformance)"
+        PLUGIN_NAME=mcp-server make build
     else
         echo "🚀 Build Go WasmPlugin: $INNER_PLUGIN_NAME"
-        PLUGIN_NAME=${INNER_PLUGIN_NAME} make build
+        PLUGIN_ROOT=${INNER_PLUGIN_ROOT:-extensions} PLUGIN_NAME=${INNER_PLUGIN_NAME} make build
     fi
 fi
