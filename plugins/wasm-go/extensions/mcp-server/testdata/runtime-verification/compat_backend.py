@@ -8,7 +8,7 @@ import os
 import threading
 from urllib.parse import parse_qs, quote, urlsplit
 
-from compat_contract import JSONNumber, MODERN, strict_request, token, unique_json, SSE_GET_AUTH_BODY, SSE_GET_AUTH_CHALLENGES, body_record
+from compat_contract import JSONNumber, MODERN, strict_request, token, unique_json, NOV25_TOOL, SSE_GET_AUTH_BODY, SSE_GET_AUTH_CHALLENGES, body_record
 from typed_canonical import canonical_json_sha256, loads_typed
 
 LOCK = threading.Lock()
@@ -45,6 +45,18 @@ def rpc_response(rpc_id, result=None, error=False):
     return b'{"jsonrpc":"2.0","id":' + token(rpc_id).encode() + b',' + field + b'}'
 
 
+def sse_no_space_wire(response, framing):
+    """Synthetic complete SSE bytes, selected only by the focused test header."""
+    if framing == "no-space": return b"data:" + response + b"\n\n"
+    if framing == "no-space-crlf": return b"data:" + response + b"\r\n\r\n"
+    if framing == "original": return b"data: " + response + b"\n\n"
+    if framing == "mixed":
+        return b'data:{"jsonrpc":"2.0","method":"notifications/progress","params":{"progressToken":"sse-progress","progress":1}}\n\ndata: ' + response + b"\n\n"
+    if framing == "empty": return b"data:\n\ndata: " + response + b"\n\n"
+    if framing == "invalid": return b"data:{invalid json}\n\n"
+    raise ValueError("unknown focused SSE framing")
+
+
 def record(handler, raw, request=None, rejection=None):
     request = request or {}
     method = request.get("method")
@@ -66,6 +78,9 @@ def record(handler, raw, request=None, rejection=None):
              "ordinaryHeaders": handler.headers.get_all("X-Ordinary", []),
              "rpcBodyBytes": len(raw), "rpcBodySha256": hashlib.sha256(raw).hexdigest(),
              "accepted": rejection is None, "rejection": rejection,
+             "protocolVersion": handler.headers.get("MCP-Protocol-Version"),
+             "initializeVersion": (request.get("params") or {}).get("protocolVersion") if method == "initialize" else None,
+             "sessionAlias": "nov25-upstream" if handler.headers.get("Mcp-Session-Id") == "nov25-upstream-session" else "other" if handler.headers.get("Mcp-Session-Id") else None,
              "initializeCapabilityKeys": sorted((request.get("params") or {}).get("capabilities", {})) if method == "initialize" else None}
     if request.get("params") is not None:
         event["paramsTypedSha256"] = canonical_json_sha256(request["params"])
@@ -168,7 +183,7 @@ def post(handler, body):
         record(handler, body.encode(), rejection=str(error))
         raw_response(handler, 400, b'{"error":"strict upstream rejected request"}')
         return True
-    record(handler, body.encode(), request)
+    event = record(handler, body.encode(), request)
     method, rpc_id = request.get("method"), request.get("id")
     mode = handler.headers.get("X-Compat-Response", "success")
     if handler.headers.get("Host") == "unknownhost":
@@ -202,7 +217,24 @@ def post(handler, body):
             result = result[:-1] + b',"padding":"' + b"x" * ((1 << 20) + 1) + b'"}'
         if mode == "deep":
             result = result[:-1] + b',"deep":' + b'[' * 70 + b'0' + b']' * 70 + b'}'
+    if headers.get("X-Compat-Nov25") == "1":
+        if method == "initialize":
+            raw_response(handler, 200, rpc_response(rpc_id, result), headers=(("Mcp-Session-Id", "nov25-upstream-session"),))
+            return True
+        if method == "tools/list":
+            result = json.dumps({"tools": [NOV25_TOOL]}, separators=(",", ":")).encode()
+        elif method == "tools/call":
+            arguments = request.get("params", {}).get("arguments", {})
+            failed = arguments.get("fail") is True
+            result = json.dumps({"content": [{"type": "text", "text": "synthetic execution failed" if failed else "echo:" + arguments.get("value", "")}], "isError": failed}, separators=(",", ":")).encode()
     response = rpc_response(rpc_id, result, mode == "rpc-error")
+    framing = headers.get("X-Compat-SSE-Format")
+    stage = headers.get("X-Compat-SSE-Stage", "business")
+    if framing and ((stage == "all" and method != "server/discover") or stage == method or stage == "business" and method.startswith("tools/")):
+        wire = sse_no_space_wire(response, framing)
+        event["sseFixture"] = {"format": framing, "stage": method, **body_record(wire), "rawBase64": base64.b64encode(wire).decode()}
+        raw_response(handler, 200, wire, "text/event-stream")
+        return True
     if path == "/unified/messages":
         key = handler.headers.get("X-Compat-Case", "unassociated")
         with LOCK:
